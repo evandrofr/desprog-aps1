@@ -43,6 +43,7 @@ int main(void) {
       num_passed++;
     } else {
       printf("NÃO PASSOU NO TESTE %d: examine a imagem %s\n", t, path);
+      printf("Resultado Esperado: %d. Resultado Obtido: %d\n", gold, result);
     }
   }
 
