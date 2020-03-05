@@ -7,11 +7,6 @@ double abso (double x){
   return x;
 }
 
-double modulo (double x, double y){
-  return sqrt((pow(x,2)+pow(y,2)));
-}
-
-
 int verify(point p, point a, point b) {
   double det = (a.x - b.x) * (p.y - p.y)  -  (a.y - b.y) * (p.x - (p.x+1));
 
@@ -50,13 +45,7 @@ if(x < p.x) return 0;
 
   if(abso(p.x - x) < 1e-7) return 2;
 
-  
-
-
-
-
   if(x > p.x) return 1;
-
 
 return 0;
 }
@@ -64,14 +53,18 @@ return 0;
 int inside(point p, point poly[], int n) {
   int i = 0;
   int soma = 0;
-  while (i<n-1){
-    int a = verify(p,poly[i],poly[i+1]);
+  int a;
+
+  while (i < n-1){
+    a = verify(p,poly[i],poly[i+1]);
     if(a == 2) return 1;
     soma += a;
     i++;
     }
-  int a = verify(p,poly[n-1],poly[0]);
-  soma += a;
+
+  a = verify(p,poly[n-1],poly[0]);
   if(a == 2) return 1;
+  soma += a;
+
   return soma%2==1;
 }
