@@ -16,7 +16,6 @@ int verify(point p, point a, point b) {
   double det = (a.x - b.x) * (p.y - p.y)  -  (a.y - b.y) * (p.x - (p.x+1));
 
   double s = ((a.x - b.x) * (b.y - p.y) - (a.y - b.y) * (b.x - (p.x+1)))/ det ;
-  //double t = ((p.x - (p.x+1)) * (b.y - p.y) - (p.y - p.y) * (b.x - (p.x+1)))/ det ;
 
   double x = (p.x+1) - s;
   double y = p.y;
@@ -63,5 +62,16 @@ return 0;
 }
 
 int inside(point p, point poly[], int n) {
-  return 0;
+  int i = 0;
+  int soma = 0;
+  while (i<n-1){
+    int a = verify(p,poly[i],poly[i+1]);
+    if(a == 2) return 1;
+    soma += a;
+    i++;
+    }
+  int a = verify(p,poly[n-1],poly[0]);
+  soma += a;
+  if(a == 2) return 1;
+  return soma%2==1;
 }
